@@ -11,17 +11,19 @@ import java.io.PrintWriter;
 @WebServlet(urlPatterns = "/myServlet2")
 public class MyServlet2 extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+
+		// Obtener el nombre del usuario desde los parámetros de la solicitud
+		String nameUser = request.getParameter("fname");
+		String lastName = request.getParameter("lname");
 
 		// send HTML page to client
 		out.println("<html>");
 		out.println("<head><title>Ejemplo HTML desde Servlet</title></head>");
 		out.println("<body>");
-		out.println("<h1>Bienvenido!!</h1>");
+		out.println("<h1>Bienvenido/a " + nameUser + " " + lastName + "!!</h1>");
+		out.println("</body></html>");
 	}
-
 }
